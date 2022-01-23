@@ -1,6 +1,7 @@
 import React from "react";
 import Header from "./Header";
 import Sidebar from "./Sidebar";
+import Feed from "./Feed";
 import "./App.css";
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
           avatar="https://i.pinimg.com/564x/e0/ac/c6/e0acc6f4fbf487952acd6fc49a2afe12.jpg"
         />
         {/* Feed  */}
+        <Feed />
         {/* Widgets */}
       </div>
     </div>
