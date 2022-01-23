@@ -67,3 +67,25 @@
   background-color: white;
   margin-top: 10px;
 }
+
+.sidebar__recentItem {
+  display: flex;
+  font-size: 13px;
+  color: grey;
+  font-weight: bolder;
+  cursor: pointer;
+  margin-bottom: 5px;
+  padding: 5px;
+}
+
+.sidebar__recentItem:hover {
+  background-color: whitesmoke;
+  color: black;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.sidebar__hash {
+  margin-left: 5px;
+  margin-right: 8px;
+}
