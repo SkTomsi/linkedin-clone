@@ -6,7 +6,6 @@
 .feed__inputContainer {
   background-color: white;
   padding: 10px;
-  padding-bottom: 20px;
   border-radius: 10px;
   margin-bottom: 20px;
 }
@@ -17,6 +16,7 @@
   border-radius: 30px;
   padding: 10px;
   padding-left: 15px;
+  color: grey;
 }
 
 .feed__input > form {
