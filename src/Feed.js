@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./Feed.css";
 import CreateRoundedIcon from "@mui/icons-material/CreateRounded";
 import InsertPhotoIcon from "@mui/icons-material/InsertPhoto";
@@ -7,12 +7,38 @@ import SubscriptionsIcon from "@mui/icons-material/Subscriptions";
 import EventNoteIcon from "@mui/icons-material/EventNote";
 import ArticleIcon from "@mui/icons-material/Article";
 import Posts from "./Posts";
+import { db } from "./firebase";
+import firebase from "firebase/compat/app";
 
 function Feed() {
+  const [input, setInput] = useState("");
   const [post, setPost] = useState([]);
+
+  useEffect(() => {
+    db.collection("posts")
+      .orderBy("timestamp", "desc")
+      .onSnapshot((snapshot) => {
+        setPost(
+          snapshot.docs.map((doc) => ({
+            id: doc.id,
+            data: doc.data(),
+          }))
+        );
+      });
+  }, []);
 
   const sendPost = (e) => {
     e.preventDefault();
+
+    db.collection("posts").add({
+      name: "Tomcy Thomas",
+      desc: "Student",
+      message: input,
+      photoUrl: "",
+      timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+    });
+
+    setInput("");
   };
   return (
     <div className="feed">
@@ -20,7 +46,11 @@ function Feed() {
         <div className="feed__input">
           <CreateRoundedIcon />
           <form>
-            <input type="text" />
+            <input
+              value={input}
+              onChange={(e) => setInput(e.target.value)}
+              type="text"
+            />
             <button onClick={sendPost} type="submit">
               Send
             </button>
@@ -37,11 +67,16 @@ function Feed() {
           />
         </div>
       </div>
-      <Posts
-        name="Tomcy Thomas"
-        descp="UI UX Designer"
-        message="Keep Wireframing keep Designing"
-      />
+
+      {post.map(({ id, data: { name, desc, message, photoUrl } }) => (
+        <Posts
+          key={id}
+          name={name}
+          desc={desc}
+          message={message}
+          photoUrl={photoUrl}
+        />
+      ))}
     </div>
   );
 }
