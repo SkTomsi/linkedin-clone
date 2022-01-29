@@ -32,7 +32,7 @@ function Feed() {
 
     db.collection("posts").add({
       name: "Tomcy Thomas",
-      desc: "Student",
+      descp: "UI UX Designer",
       message: input,
       photoUrl: "",
       timestamp: firebase.firestore.FieldValue.serverTimestamp(),
@@ -68,11 +68,11 @@ function Feed() {
         </div>
       </div>
 
-      {post.map(({ id, data: { name, desc, message, photoUrl } }) => (
+      {post.map(({ id, data: { name, descp, message, photoUrl } }) => (
         <Posts
           key={id}
           name={name}
-          desc={desc}
+          descp={descp}
           message={message}
           photoUrl={photoUrl}
         />

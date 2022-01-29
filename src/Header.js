@@ -8,19 +8,16 @@ import BusinessCenterRoundedIcon from "@mui/icons-material/BusinessCenterRounded
 import NotificationsRoundedIcon from "@mui/icons-material/NotificationsRounded";
 import MessageRoundedIcon from "@mui/icons-material/MessageRounded";
 
-function Header() {
+function Header(avatar) {
   return (
     <div className="header">
       <div className="header__left">
-        <img
-          src="https://cdn-icons-png.flaticon.com/512/174/174857.png"
-          alt=""
-        />
+        <img src={avatar} alt="" />
 
         <div className="header__search">
           {/* SearchIcon */}
           <SearchIcon />
-          <input type="text" />
+          <input placeholder="Search" type="text" />
         </div>
       </div>
 
@@ -30,10 +27,7 @@ function Header() {
         <HeaderOption Icon={BusinessCenterRoundedIcon} title="Jobs" />
         <HeaderOption Icon={MessageRoundedIcon} title="Messaging" />
         <HeaderOption Icon={NotificationsRoundedIcon} title="Notifications" />
-        <HeaderOption
-          avatar="https://i.pinimg.com/564x/e0/ac/c6/e0acc6f4fbf487952acd6fc49a2afe12.jpg"
-          title="Me"
-        />
+        <HeaderOption avatar="https://i.imgur.com/5dsWyCn.png" title="Me" />
       </div>
     </div>
   );
