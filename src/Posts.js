@@ -12,7 +12,9 @@ function Posts({ name, descp, message, photoUrl }) {
   return (
     <div className="post">
       <div className="post__header">
-        <Avatar />
+        <Avatar style={{ textTransform: "uppercase" }} src={photoUrl}>
+          {name}
+        </Avatar>
         <div className="post__info">
           <h2>{name}</h2>
           <p>{descp}</p>

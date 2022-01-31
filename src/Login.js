@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
+import { login } from "./features/userSlice";
 import { auth } from "./firebase";
 import "./Login.css";
 
@@ -12,6 +13,20 @@ function Login() {
 
   const loginToApp = (e) => {
     e.preventDefault();
+
+    auth
+      .signInWithEmailAndPassword(email, password)
+      .then((userAuth) => {
+        dispatch(
+          login({
+            email: userAuth.user.email,
+            uid: userAuth.user.uid,
+            displayName: userAuth.user.displayName,
+            photoUrl: userAuth.user.photoURL,
+          })
+        );
+      })
+      .catch((error) => alert(error));
   };
 
   const register = () => {
@@ -39,7 +54,7 @@ function Login() {
           });
       })
       .catch((error) => {
-        alert(error.message);
+        alert(error);
       });
   };
 

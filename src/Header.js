@@ -7,12 +7,25 @@ import PeopleAltRoundedIcon from "@mui/icons-material/PeopleAltRounded";
 import BusinessCenterRoundedIcon from "@mui/icons-material/BusinessCenterRounded";
 import NotificationsRoundedIcon from "@mui/icons-material/NotificationsRounded";
 import MessageRoundedIcon from "@mui/icons-material/MessageRounded";
+import { useDispatch } from "react-redux";
+import { auth } from "./firebase";
+import { logout } from "./features/userSlice";
 
-function Header(avatar) {
+function Header() {
+  const dispatch = useDispatch();
+
+  const logoutOfApp = () => {
+    dispatch(logout());
+    auth.signOut();
+  };
+
   return (
     <div className="header">
       <div className="header__left">
-        <img src={avatar} alt="" />
+        <img
+          src="https://cdn-icons-png.flaticon.com/512/174/174857.png"
+          alt=""
+        />
 
         <div className="header__search">
           {/* SearchIcon */}
@@ -27,7 +40,7 @@ function Header(avatar) {
         <HeaderOption Icon={BusinessCenterRoundedIcon} title="Jobs" />
         <HeaderOption Icon={MessageRoundedIcon} title="Messaging" />
         <HeaderOption Icon={NotificationsRoundedIcon} title="Notifications" />
-        <HeaderOption avatar="https://i.imgur.com/5dsWyCn.png" title="Me" />
+        <HeaderOption onClick={logoutOfApp} avatar={true} title="Me" />
       </div>
     </div>
   );

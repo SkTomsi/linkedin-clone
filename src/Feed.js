@@ -9,8 +9,11 @@ import ArticleIcon from "@mui/icons-material/Article";
 import Posts from "./Posts";
 import { db } from "./firebase";
 import firebase from "firebase/compat/app";
+import { useSelector } from "react-redux";
+import { selectUser } from "./features/userSlice";
 
 function Feed() {
+  const user = useSelector(selectUser);
   const [input, setInput] = useState("");
   const [post, setPost] = useState([]);
 
@@ -31,10 +34,10 @@ function Feed() {
     e.preventDefault();
 
     db.collection("posts").add({
-      name: "Tomcy Thomas",
-      descp: "UI UX Designer",
+      name: user.displayName,
+      descp: user.email,
       message: input,
-      photoUrl: "",
+      photoUrl: user.photoUrl || " ",
       timestamp: firebase.firestore.FieldValue.serverTimestamp(),
     });
 
